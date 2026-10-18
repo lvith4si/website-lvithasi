@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>lvithasi</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Rakkas&family=Space+Grotesk:ital,wght@0,400;0,800;1,800&family=Space+Mono&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --ink: #FFFFFF;
+      --paper: #2B2B2B;
+      --accent-light: #BFD8E3;
+      --muted: #B8C4C9;
+      --card-dark: #141414;
+      --line: rgba(255, 255, 255, 0.18);
+      --body-font: "DM Sans", Arial, sans-serif;
+      --display-font: "Space Grotesk", "DM Sans", sans-serif;
+      --arabic-font: "Rakkas", serif;
+    }
+
+    * { box-sizing: border-box; }
+  
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100svh;
+      color: var(--ink);
+      background-color: var(--card-dark);
+      background-image:
+        radial-gradient(ellipse at 50% 10%, rgba(255,255,255,.035), transparent 60%),
+        repeating-linear-gradient(12deg, rgba(255,255,255,.012) 0 1px, transparent 1px 4px);
+      font-family: var(--body-font);
+    }
+
+    .page {
+      width: 100%;
+      max-width: none;
+      margin: 0 auto;
+      padding: clamp(20px, 4.3vw, 48px);
+      background-color: var(--paper);
+      background-image:
+        repeating-linear-gradient(0deg, rgba(255,255,255,.012) 0 1px, transparent 1px 3px),
+        repeating-linear-gradient(90deg, rgba(255,255,255,.008) 0 1px, transparent 1px 3px);
+    }
+
+    .topline {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 22px;
+      border-bottom: 1px solid var(--line);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .hero {
+      padding: 40px 0 30px;
+    }
+
+    .hero-title {
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .hero-title .script-name {
+      font-family: var(--display-font);
+      font-size: clamp(54px, 11.8vw, 108px);
+      color: var(--ink);
+      font-weight: 800;
+      font-style: italic;
+      line-height: .86;
+      letter-spacing: -.085em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      white-space: nowrap;
+    }
+
+    .hero-title .block-text {
+      font-family: var(--display-font);
+      font-size: clamp(38px, 9.5vw, 88px);
+      font-weight: 800;
+      line-height: .9;
+      letter-spacing: -.075em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .hero-title .mind-word {
+      color: var(--accent-light);
+    }
+
+     .hero-subtitle {
+      max-width: 500px;
+      margin: 0;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .feature {
+      margin: 26px 0 38px;
+      padding: 12px;
+      background: linear-gradient(115deg, #121820 0%, #003853 60%, #1A4D68 100%);
+      border: 1px solid rgba(191, 216, 227, 0.2);
+      border-radius: 14px;
+    }
+
+    .feature-topline {
+      display: flex;
+      padding: 5px 3px 12px;
+      font-family: "Space Mono", monospace;
+      font-size: 10px;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    .feature-track {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      padding-bottom: 7px;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .feature-track::-webkit-scrollbar {
+      display: none;
+    }
+
+    .feature-image {
+      position: relative;
+      flex: 0 0 calc((100% - 20px) / 3);
+      height: clamp(180px, 23vw, 245px);
+      overflow: hidden;
+      border-radius: 9px;
+      background: #141414;
+    }
+
+    .feature-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .image-wash {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.85) 100%);
+      pointer-events: none;
+    }
+
+    .feature-caption {
+      position: absolute;
+      left: 13px;
+      bottom: 18px;
+      right: 13px;
+      z-index: 2;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.9);
+    }
+
+    .feature-caption small {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 9px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      font-family: "Space Mono", monospace;
+    }
+
+    .feature-caption strong {
+      display: block;
+      font-family: var(--display-font);
+      font-size: clamp(18px, 3.5vw, 28px);
+      line-height: .98;
+      text-transform: uppercase;
+    }
+
+    .manifesto {
+      max-width: 720px;
+      margin: 44px auto 42px;
+      text-align: center;
+    }
+
+    .arabic-manifesto {
+      direction: rtl;
+      font-family: var(--arabic-font);
+      font-size: clamp(30px, 6.4vw, 58px);
+      line-height: 1.55;
+      color: var(--ink);
+    }
+
+    .video-section {
+      margin-top: 40px;
+      padding: 20px;
+      border-radius: 9px;
+      background: #000000;
+      border: 1px solid rgba(191,216,227,.18);
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding-bottom: 10px;
+      margin-bottom: 18px;
+      border-bottom: 1px solid rgba(255,255,255,.2);
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-family: var(--display-font);
+      font-size: clamp(25px, 5vw, 42px);
+      line-height: .95;
+      text-transform: uppercase;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--accent-light);
+      font-size: 10px;
+      text-align: right;
+    }
+
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .video-card {
+      margin: 0;
+    }
+
+    .video-frame {
+      overflow: hidden;
+      aspect-ratio: 16 / 9;
+      border-radius: 7px;
+      background: #141414;
+    }
+
+    .video-frame video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    @media (max-width: 560px) {
+      .feature-image { flex-basis: 78%; }
+      .video-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <header class="topline">
+      <span>Allika Maulya Nuryani | 2400551</span>
+      <span>an ongoing collection / 2026</span>
+    </header>
+
+    <section class="hero">
+      <h1 class="hero-title">
+        <span class="script-name">LVITHASI'S</span>
+        <span class="block-text">TIP OF <span class="mind-word">THE ICEBERG.</span></span>
+      </h1>
+        <p class="hero-subtitle">a very small collection of the very many things going on in my head. welcome in, look around, don't mind the mess.</p>
+    </section>
+
+    <section class="feature">
+      <div class="feature-topline">
+        <span>all time favorite</span>
+        </div>
+      
+      <div class="feature-track" id="featureTrack">
+        <article class="feature-image">
+          <img src="images/enhypen.jpe" alt="Enhypen">
+          <div class="image-wash"></div>
+          <div class="feature-caption"><strong>ENHYPEN</strong></div>
+        </article>
+
+        <article class="feature-image">
+          <img src="images/itadori.jpe" alt="Itadori">
+          <div class="image-wash"></div>
+          <div class="feature-caption"><strong>ITADORI YUUJI</strong></div>
+        </article>
+
+        <article class="feature-image">
+          <img src="images/goat.jpe" alt="Verstappen">
+          <div class="image-wash"></div>
+          <div class="feature-caption"><strong>GOAT MAX</strong></div>
+        </article>
+
+        <article class="feature-image">
+          <img src="images/headlock.jpe" alt="Headlock">
+          <div class="image-wash"></div>
+          <div class="feature-caption"><strong>HEADLOCK</strong></div>
+        </article>
+
+        <article class="feature-image">
+          <img src="images/cn.jpe" alt="Cartoon">
+          <div class="image-wash"></div>
+          <div class="feature-caption"><strong>FAV CHANNEL</strong></div>
+        </article>
+
+        <article class="feature-image">
+          <img src="images/spidey.jpe" alt="Spiderman">
+          <div class="image-wash"></div>
+          <div class="feature-caption"><small>wedding i might attend</small><strong>SPIDEY N CAT</strong></div>
+        </article>
+
+        <article class="feature-image">
+          <img src="images/kaito.jpe" alt="Vibes">
+          <div class="image-wash"></div>
+          <div class="feature-caption"><strong>STEALER</strong></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="manifesto">
+      <div class="arabic-manifesto" lang="ar" dir="rtl">
+        كن نفسك، ولا تساوم على ذاتك.<br> <a href="https://youtu.be/6D52MHks0QE?si=bXVoYST6iOhDyEsI">أنت هو أنت</a>
+      </div>
+    </section>
+
+    <section class="video-section">
+      <div class="section-head">
+        <h2>THE VIDEOS<br>KEEP ON REPEAT.</h2>
+        <p>things i watched once<br>and then 47 more times<br>wkwkwk</p>
+      </div>
+
+      <div class="video-grid">
+        <figure class="video-card">
+          <div class="video-frame">
+            <video controls playsinline poster="videos/thumb3.jpe">
+              <source src="videos/video3.mp4" type="video/mp4">
+            </video>
+          </div>
+        </figure>
+
+        <figure class="video-card">
+          <div class="video-frame">
+            <video controls playsinline poster="videos/thumb2.jpe">
+              <source src="videos/video2.mp4" type="video/mp4">
+            </video>
+          </div>
+        </figure>
+
+        <figure class="video-card">
+          <div class="video-frame">
+            <video controls playsinline poster="videos/thumb1.jpe">
+              <source src="videos/video1.mp4" type="video/mp4">
+            </video>
+          </div>
+        </figure>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const track = document.getElementById("featureTrack");
+
+    setInterval(() => {
+      if (track.scrollLeft + track.clientWidth >= track.scrollWidth - 5) {
+        track.scrollTo({ left: 0, behavior: "smooth" });
+      } else {
+        track.scrollBy({ left: 280, behavior: "smooth" });
+      }
+    }, 3500);
+  </script>
+</body>
+</html>
